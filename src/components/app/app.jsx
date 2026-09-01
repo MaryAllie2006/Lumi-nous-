@@ -1,9 +1,14 @@
+import Header from '../header/header.jsx'
+import Main from '../main/main.jsx'
+import Footer from '../footer/footer.jsx'
 import './app.css'
 
 function App() {
   return (
     <div className="app">
-      <h1>Lumi-nous</h1>
+      <Header />
+      <Main />
+      <Footer />
     </div>
   )
 }
