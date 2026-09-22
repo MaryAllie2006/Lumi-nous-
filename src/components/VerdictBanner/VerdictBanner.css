@@ -1,0 +1,21 @@
+.verdict-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: rgba(112, 222, 158, 0.12);
+}
+
+.verdict-banner__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #70DE9E;
+}
+
+.verdict-banner__text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #70DE9E;
+}
