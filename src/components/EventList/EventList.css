@@ -1,0 +1,14 @@
+.event-list{
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.event-list__empty{
+    font-size:14px;
+    color:#9ea6c9;
+    text-align: center;
+}

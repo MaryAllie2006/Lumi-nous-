@@ -1,5 +1,6 @@
 import SearchForm from '../SearchForm/SearchForm.jsx'
 import ResultsPanel from '../ResultsPanel/ResultsPanel.jsx'
+
 import './main.css'
 
 

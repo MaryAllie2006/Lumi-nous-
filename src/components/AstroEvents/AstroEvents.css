@@ -1,0 +1,18 @@
+.astro-events{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    flex: 1;
+    padding: 3rem 24px 60px;
+    box-sizing: border-box;
+}
+
+.astro-events__title{
+    font-size: 26px;
+    font-weight: 700;
+    color: #f4f2ff;
+    margin: 0;
+}

@@ -15,19 +15,21 @@
     gap:5px;
     flex:1;
     min-width:0;
+    text-align: left;
 }
 
 .event-card__heading{
     display:flex;
     flex-direction: row;
     align-items:center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .event-card__title{
     font-weight:700;
     font-size:17px;
     color:#f4f2ff;
+    margin: 0;
 }
 
 .event-card__badge{
@@ -43,9 +45,13 @@
     font-size:13px;
     font-weight:500;
     color:#b8a8ff;
+    margin: 0;
+    padding: 0;
 }
 
 .event-card__description{
     font-size:14px;
     color:#9ea6c9;
+    margin: 0;
+    padding: 0;
 }
