@@ -1,0 +1,51 @@
+.event-card{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    background: #161b3d;
+    border: 1px solid #333861;
+    border-radius: 14px;
+    padding: 18px 20px;
+}
+
+.event-card__body{
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+    flex:1;
+    min-width:0;
+}
+
+.event-card__heading{
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    gap: 10px;
+}
+
+.event-card__title{
+    font-weight:700;
+    font-size:17px;
+    color:#f4f2ff;
+}
+
+.event-card__badge{
+    font-size: 11px;
+    font-weight:500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--event-badge-bg);
+    color: var(--event-accent);
+}
+
+.event-card__date{
+    font-size:13px;
+    font-weight:500;
+    color:#b8a8ff;
+}
+
+.event-card__description{
+    font-size:14px;
+    color:#9ea6c9;
+}
