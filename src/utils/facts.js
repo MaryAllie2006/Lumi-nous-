@@ -7,4 +7,5 @@ export const facts = [
  'Venus’ clouds trap a lot of the Sun’s heat, making its temperature the hottest in the solar system: 863° F', 
  'If the Milky Way were the size of a single tennis ball, the Andromeda Galaxy (M31) would lie 5.6 feet away.', 
  'Jupiter’s Great Red Spot, which rotates once approximately every six days, is an anti-cyclonic storm 22° south of the planet’s equator', 
+ 
 ]

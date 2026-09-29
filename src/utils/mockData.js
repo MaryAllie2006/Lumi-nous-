@@ -1,6 +1,5 @@
 // Mock data for building the UI before the real APIs are connected.
-// These are the shapes components consume; api.js should normalize real
-// responses into the same shapes so swapping mocks for live data is painless.
+// These are the shapes components consume; api.js should normalize real responses into the same shapes so swapping mocks for live data is painless.
 
 export const mockLocation = {
     name: 'Big Bend National Park',
