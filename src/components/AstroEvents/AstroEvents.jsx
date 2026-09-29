@@ -1,13 +1,10 @@
 import './AstroEvents.css'
 import MonthSelector from '../MonthSelector/MonthSelector.jsx'
 import EventList from '../EventList/EventList.jsx'
+import { mockAstroEvents } from '../../utils/mockData.js'
 
-// Placeholder data for August 2026 until events come from the API.
-const events = [
-    { id: 1, title: 'Total Solar Eclipse', category: 'eclipse', dateRange: 'Aug 12', description: 'Totality visible across Greenland, Iceland and Spain.' },
-    { id: 2, title: 'Perseids', category: 'meteor shower', dateRange: 'Aug 12 – 13', description: 'Up to 100 meteors per hour, with a new moon for dark skies.' },
-    { id: 3, title: 'Full Sturgeon Moon', category: 'full moon', dateRange: 'Aug 28', description: 'Coincides with a partial lunar eclipse.' },
-]
+// Hardcoded to August 2026 until MonthSelector drives the selected month.
+const events = mockAstroEvents.filter((event) => event.startDate.startsWith('2026-08'))
 
 function AstroEvents(){
     return (

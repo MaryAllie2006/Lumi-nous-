@@ -6,14 +6,19 @@ import './main.css'
 
 import star from '../../images/star.svg'
 
-function Main() {
+function Main({ hasResults, onLocationSearch }) {
   return (
     <main className="main">
-      <img className="main__star" src={star} alt="" aria-hidden="true" />
-      <h1 className="main__title">Luminous</h1>
-      <p className="main__subtitle">Find the best night to stargaze, anywhere.</p>
-      <SearchForm />
-      <ResultsPanel />
+      {hasResults ? (
+        <ResultsPanel />
+      ) : (
+        <>
+          <img className="main__star" src={star} alt="" aria-hidden="true" />
+          <h1 className="main__title">Luminous</h1>
+          <p className="main__subtitle">Find the best night to stargaze, anywhere.</p>
+          <SearchForm onSearch={onLocationSearch} onUseLocation={onLocationSearch} />
+        </>
+      )}
     </main>
   )
 }
