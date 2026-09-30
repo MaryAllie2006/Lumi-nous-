@@ -5,6 +5,7 @@ import {
     mockLightPollution,
     mockAstroEvents,
 } from './mockData.js'
+import { getMoonPhase as calculateMoonPhase } from './moonPhase.js'
 
 const MOCK_DELAY_MS = 600
 
@@ -36,8 +37,9 @@ export function getWeather({ latitude, longitude }, date) {
     return resolveWithDelay(mockWeather)
 }
 
-export function getMoonPhase(date) {
-    return resolveWithDelay(mockMoonPhase)
+export function getMoonPhase(date = new Date()) {
+    // Moonrise isn't calculated yet, so keep the mock value for now
+    return resolveWithDelay({ ...calculateMoonPhase(date), moonrise: mockMoonPhase.moonrise })
 }
 
 export function getLightPollution({ latitude, longitude }) {
