@@ -2,12 +2,6 @@ import './ResultsPanel.css'
 import ScoreRing from './../ScoreRing/ScoreRing.jsx'
 import InfoCard from './../InfoCard/InfoCard.jsx'
 import VerdictBanner from './../VerdictBanner/VerdictBanner.jsx'
-import {
-    mockLocation,
-    mockWeather,
-    mockMoonPhase,
-    mockLightPollution,
-} from '../../utils/mockData.js'
 
 import star from '../../images/star.svg'
 import sunIcon from '../../images/Sun.svg'
@@ -23,19 +17,14 @@ function formatDate(isoDate){
     })
 }
 
-function ResultsPanel({
-    location = mockLocation,
-    weather = mockWeather,
-    moon = mockMoonPhase,
-    lightPollution = mockLightPollution,
-}){
+function ResultsPanel({location, weather, moon, lightPollution, verdict, score, rating}){
     return(
         <div className="results-panel">
             <img className="results-panel__star" src={star} alt="" aria-hidden="true" />
             <h2 className="results-panel__title">{location.name}, {location.region}</h2>
             <p className="results-panel__subtitle">Tonight | {formatDate(weather.date)}</p>
-            <ScoreRing score={8.6} />
-            <VerdictBanner/>
+            <ScoreRing score={score} />
+            <VerdictBanner verdict={verdict} rating={rating}/>
             <div className="results-panel__cards">
                 <InfoCard
                     icon={sunIcon}
@@ -47,7 +36,7 @@ function ResultsPanel({
                     icon={moonIcon}
                     label="Moon Phase"
                     value={moon.phaseName}
-                    subtext={`${moon.illuminationPercent}% illumination rises ${moon.moonrise}`}
+                    subtext={`${moon.illuminationPercent}% illumination · rises ${moon.moonrise}`}
                 />
                 <InfoCard
                     icon={pollutionIcon}

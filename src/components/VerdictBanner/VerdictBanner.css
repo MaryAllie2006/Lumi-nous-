@@ -4,18 +4,22 @@
     gap: 8px;
     padding: 10px 20px;
     border-radius: 999px;
-    background: rgba(112, 222, 158, 0.12);
+    background: color-mix(in srgb, var(--verdict-color) 12%, transparent);
 }
 
 .verdict-banner__dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #70DE9E;
+    background: var(--verdict-color);
 }
 
 .verdict-banner__text {
     font-size: 16px;
     font-weight: 600;
-    color: #70DE9E;
+    color: var(--verdict-color);
 }
+
+.verdict-banner_excellent { --verdict-color: #70DE9E; }
+.verdict-banner_fair      { --verdict-color: #F2C66D; }
+.verdict-banner_poor      { --verdict-color: #F07C7C; }

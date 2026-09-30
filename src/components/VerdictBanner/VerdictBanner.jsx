@@ -1,10 +1,10 @@
 import './VerdictBanner.css'
 
-function VerdictBanner() {
+function VerdictBanner({verdict, rating}) {
     return (
-        <div className="verdict-banner">
+        <div className='verdict-banner verdict-banner_${rating}'>
             <span className="verdict-banner__dot"></span>
-            <span className="verdict-banner__text">Excellent night for stargazing</span>
+            <span className="verdict-banner__text">{verdict}</span>
         </div>
     )
 }
