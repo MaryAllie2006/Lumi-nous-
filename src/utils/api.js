@@ -14,8 +14,21 @@ function resolveWithDelay(data) {
     })
 }
 
+function rejectWithDelay(error) {
+    return new Promise((_, reject) => {
+        setTimeout(() => reject(error), MOCK_DELAY_MS)
+    })
+}
+
 // query: a city/address string, or { latitude, longitude } from geolocation.
 export function getLocation(query) {
+    // Mock only: search "nowhere" to test the not-found error
+    if (typeof query === 'string' && query.trim().toLowerCase() === 'nowhere') {
+        const error = new Error('Location not found')
+        error.code = 'LOCATION_NOT_FOUND'
+        return rejectWithDelay(error)
+    }
+
     return resolveWithDelay(mockLocation)
 }
 

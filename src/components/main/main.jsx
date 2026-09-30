@@ -18,9 +18,22 @@ import star from "../../images/star.svg";
 
 import { getCurrentCoords } from "../../utils/geolocation.js";
 
+const ERROR_MESSAGES = {
+  LOCATION_NOT_FOUND: "We couldn't find that location. Try a city name or full address.",
+  GEOLOCATION_UNSUPPORTED: "Your browser doesn't support location. Search by city instead.",
+  1: "Location access is blocked. Allow it in your browser, or search by city instead.",
+  2: "We couldn't determine your location. Search by city instead.",
+  3: "Finding your location took too long. Please try again.",
+};
+
+function getErrorMessage(err) {
+  return ERROR_MESSAGES[err.code] ?? "Something went wrong. Please try again.";
+}
+
 function Main() {
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState("idle"); // 'idle' | 'loading' | 'results' | 'error'
   const [results, setResults] = useState(null);
+  const [error, setError] = useState("");
 
   async function handleSearch(query) {
     setStatus("loading");
@@ -54,7 +67,8 @@ function Main() {
       });
       setStatus("results");
     } catch (err) {
-      setStatus("idle");
+      setError(getErrorMessage(err));
+      setStatus("error");
     }
   }
 
@@ -64,7 +78,8 @@ function Main() {
       const coords = await getCurrentCoords()
       await handleSearch(coords)
     } catch (err) {
-      setStatus('idle')
+      setError(getErrorMessage(err));
+      setStatus("error");
     }
   }
 
@@ -79,13 +94,18 @@ function Main() {
 
       {status === "results" && <ResultsPanel {...results} />}
 
-      {status === "idle" && (
+      {(status === "idle" || status === "error") && (
         <>
           <img className="main__star" src={star} alt="" aria-hidden="true" />
           <h1 className="main__title">Luminous</h1>
           <p className="main__subtitle">
             Find the best night to stargaze, anywhere.
           </p>
+          {status === "error" && (
+            <p className="main__error" role="alert">
+              {error}
+            </p>
+          )}
           <SearchForm onSearch={handleSearch} onUseLocation={handleUseLocation} />
 
         </>

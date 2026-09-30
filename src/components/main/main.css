@@ -25,3 +25,12 @@
   font-size: 17px;
   margin: 12px 0 40px;
 }
+
+.main__error {
+  margin: -16px 0 24px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(240, 124, 124, 0.12);
+  color: #f07c7c;
+  font-size: 14px;
+}

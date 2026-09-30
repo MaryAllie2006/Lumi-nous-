@@ -16,3 +16,8 @@
     color: #f4f2ff;
     margin: 0;
 }
+
+.astro-events__loading{
+    color: #9fa3c0;
+    text-align: center;
+}

@@ -6,6 +6,7 @@ function SearchForm({ onSearch, onUseLocation }) {
 
   function handleSubmit(event) {
     event.preventDefault()
+    if (!query.trim()) return
     onSearch?.(query)
   }
 
