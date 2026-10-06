@@ -1,11 +1,11 @@
 import {
     mockLocation,
-    mockWeather,
     mockMoonPhase,
     mockLightPollution,
     mockAstroEvents,
 } from './mockData.js'
 import { getMoonPhase as calculateMoonPhase } from './moonPhase.js'
+import { fetchTonightWeather } from './weather.js'
 
 const MOCK_DELAY_MS = 600
 
@@ -33,8 +33,9 @@ export function getLocation(query) {
     return resolveWithDelay(mockLocation)
 }
 
-export function getWeather({ latitude, longitude }, date) {
-    return resolveWithDelay(mockWeather)
+// Live forecast from Open-Meteo for tonight (sunset → sunrise)
+export function getWeather(coords) {
+    return fetchTonightWeather(coords)
 }
 
 export function getMoonPhase(date = new Date()) {

@@ -24,6 +24,7 @@ const ERROR_MESSAGES = {
   1: "Location access is blocked. Allow it in your browser, or search by city instead.",
   2: "We couldn't determine your location. Search by city instead.",
   3: "Finding your location took too long. Please try again.",
+  WEATHER_UNAVAILABLE: "We couldn't load the weather forecast right now. Please try again in a moment.",
 };
 
 function getErrorMessage(err) {

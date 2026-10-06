@@ -11,3 +11,7 @@
 .footer p {
   margin: 0;
 }
+
+.footer__link {
+  color: #9fa3c0;
+}
