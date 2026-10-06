@@ -25,6 +25,7 @@ const ERROR_MESSAGES = {
   2: "We couldn't determine your location. Search by city instead.",
   3: "Finding your location took too long. Please try again.",
   WEATHER_UNAVAILABLE: "We couldn't load the weather forecast right now. Please try again in a moment.",
+  LOCATION_UNAVAILABLE: "Location search isn't responding right now. Please try again in a moment.",
 };
 
 function getErrorMessage(err) {
@@ -35,8 +36,10 @@ function Main() {
   const [status, setStatus] = useState("idle"); // 'idle' | 'loading' | 'results' | 'error'
   const [results, setResults] = useState(null);
   const [error, setError] = useState("");
+  const [lastQuery, setLastQuery] = useState(""); // refills the search box after an error
 
   async function handleSearch(query) {
+    if (typeof query === "string") setLastQuery(query);
     setStatus("loading");
     try {
       const location = await getLocation(query);
@@ -107,7 +110,11 @@ function Main() {
               {error}
             </p>
           )}
-          <SearchForm onSearch={handleSearch} onUseLocation={handleUseLocation} />
+          <SearchForm
+            initialQuery={lastQuery}
+            onSearch={handleSearch}
+            onUseLocation={handleUseLocation}
+          />
 
         </>
       )}

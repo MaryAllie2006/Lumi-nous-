@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './SearchForm.css'
 
-function SearchForm({ onSearch, onUseLocation }) {
-  const [query, setQuery] = useState('')
+function SearchForm({ initialQuery = '', onSearch, onUseLocation }) {
+  const [query, setQuery] = useState(initialQuery)
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -15,6 +15,7 @@ function SearchForm({ onSearch, onUseLocation }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          name="location"
           className="search-form__input"
           placeholder="Enter a city or address"
           value={query}

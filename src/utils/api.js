@@ -1,11 +1,11 @@
 import {
-    mockLocation,
-    mockMoonPhase,
     mockLightPollution,
     mockAstroEvents,
 } from './mockData.js'
 import { getMoonPhase as calculateMoonPhase } from './moonPhase.js'
 import { fetchTonightWeather } from './weather.js'
+
+import { searchLocation, reverseLocation } from './location.js'
 
 const MOCK_DELAY_MS = 600
 
@@ -15,22 +15,9 @@ function resolveWithDelay(data) {
     })
 }
 
-function rejectWithDelay(error) {
-    return new Promise((_, reject) => {
-        setTimeout(() => reject(error), MOCK_DELAY_MS)
-    })
-}
 
-// query: a city/address string, or { latitude, longitude } from geolocation.
 export function getLocation(query) {
-    // Mock only: search "nowhere" to test the not-found error
-    if (typeof query === 'string' && query.trim().toLowerCase() === 'nowhere') {
-        const error = new Error('Location not found')
-        error.code = 'LOCATION_NOT_FOUND'
-        return rejectWithDelay(error)
-    }
-
-    return resolveWithDelay(mockLocation)
+    return typeof query === 'string' ? searchLocation(query) : reverseLocation(query)
 }
 
 // Live forecast from Open-Meteo for tonight (sunset → sunrise)
@@ -38,9 +25,9 @@ export function getWeather(coords) {
     return fetchTonightWeather(coords)
 }
 
+// Moonrise isn't calculated yet, so it's left out rather than showing a fake time
 export function getMoonPhase(date = new Date()) {
-    // Moonrise isn't calculated yet, so keep the mock value for now
-    return resolveWithDelay({ ...calculateMoonPhase(date), moonrise: mockMoonPhase.moonrise })
+    return resolveWithDelay(calculateMoonPhase(date))
 }
 
 export function getLightPollution({ latitude, longitude }) {

@@ -21,7 +21,7 @@ function ResultsPanel({location, weather, moon, lightPollution, verdict, score, 
     return(
         <div className="results-panel">
             <img className="results-panel__star" src={star} alt="" aria-hidden="true" />
-            <h2 className="results-panel__title">{location.name}, {location.region}</h2>
+            <h2 className="results-panel__title">{[location.name, location.region].filter(Boolean).join(', ')}</h2>
             <p className="results-panel__subtitle">Tonight | {formatDate(weather.date)}</p>
             <ScoreRing score={score} />
             <VerdictBanner verdict={verdict} rating={rating}/>
@@ -36,7 +36,7 @@ function ResultsPanel({location, weather, moon, lightPollution, verdict, score, 
                     icon={moonIcon}
                     label="Moon Phase"
                     value={moon.phaseName}
-                    subtext={`${moon.illuminationPercent}% illumination · rises ${moon.moonrise}`}
+                    subtext={[`${moon.illuminationPercent}% illumination`, moon.moonrise && `rises ${moon.moonrise}`].filter(Boolean).join(' · ')}
                 />
                 <InfoCard
                     icon={pollutionIcon}
