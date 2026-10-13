@@ -17,6 +17,11 @@ function formatDate(isoDate){
     })
 }
 
+// Shows a Date as '2:35 AM' in the location's own time zone
+function formatClock(date, timeZone) {
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone })
+}
+
 function ResultsPanel({location, weather, moon, lightPollution, verdict, score, rating}){
     return(
         <div className="results-panel">
@@ -36,12 +41,15 @@ function ResultsPanel({location, weather, moon, lightPollution, verdict, score, 
                     icon={moonIcon}
                     label="Moon Phase"
                     value={moon.phaseName}
-                    subtext={[`${moon.illuminationPercent}% illumination`, moon.moonrise && `rises ${moon.moonrise}`].filter(Boolean).join(' · ')}
+                    subtext={[
+                        `${moon.illuminationPercent}% illumination`,
+                        moon.moonrise && `rises ${formatClock(moon.moonrise, weather.timezone)}`,
+                    ].filter(Boolean).join(' · ')}
                 />
                 <InfoCard
                     icon={pollutionIcon}
                     label="Light Pollution"
-                    value={`Bortle Class ${lightPollution.bortleClass}`}
+                    value={`Bortle Class ${lightPollution.bortleClass}${lightPollution.isEstimate ? ' (est.)' : ''}`}
                     subtext={lightPollution.description}
                 />
             </div>

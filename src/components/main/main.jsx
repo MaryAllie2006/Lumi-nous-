@@ -28,6 +28,15 @@ const ERROR_MESSAGES = {
   LOCATION_UNAVAILABLE: "Location search isn't responding right now. Please try again in a moment.",
 };
 
+// The preloader stays up for a random 10–15 seconds, even when the data arrives sooner
+const MIN_LOADING_MS = 10000;
+const MAX_LOADING_MS = 15000;
+
+function waitForLoadingScreen() {
+  const ms = MIN_LOADING_MS + Math.random() * (MAX_LOADING_MS - MIN_LOADING_MS);
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function getErrorMessage(err) {
   return ERROR_MESSAGES[err.code] ?? "Something went wrong. Please try again.";
 }
@@ -38,7 +47,8 @@ function Main() {
   const [error, setError] = useState("");
   const [lastQuery, setLastQuery] = useState(""); // refills the search box after an error
 
-  async function handleSearch(query) {
+  // loadingDone: passed in by handleUseLocation so its wait starts when the button is clicked
+  async function handleSearch(query, loadingDone = waitForLoadingScreen()) {
     if (typeof query === "string") setLastQuery(query);
     setStatus("loading");
     try {
@@ -50,8 +60,8 @@ function Main() {
 
       const [weather, moon, lightPollution] = await Promise.all([
         getWeather(coords),
-        getMoonPhase(),
-        getLightPollution(coords),
+        getMoonPhase(coords),
+        getLightPollution(location),
       ]);
 
       const { score, rating, verdict } = calculateScore({
@@ -69,6 +79,7 @@ function Main() {
         rating,
         verdict,
       });
+      await loadingDone;
       setStatus("results");
     } catch (err) {
       setError(getErrorMessage(err));
@@ -78,9 +89,10 @@ function Main() {
 
   async function handleUseLocation(){
     setStatus('loading')
+    const loadingDone = waitForLoadingScreen()
     try { 
       const coords = await getCurrentCoords()
-      await handleSearch(coords)
+      await handleSearch(coords, loadingDone)
     } catch (err) {
       setError(getErrorMessage(err));
       setStatus("error");

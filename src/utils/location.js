@@ -20,6 +20,8 @@ async function requestNominatim(path, params) {
     return response.json()
 }
 
+const SETTLEMENT_TYPES = ['city', 'town', 'village', 'hamlet'] // largest first
+
 // Turns a Nominatim result into the same shape as mockLocation
 function toLocation(result, coords) {
     const { address = {} } = result
@@ -32,6 +34,8 @@ function toLocation(result, coords) {
         country: address.country,
         latitude: coords?.latitude ?? Number(result.lat),
         longitude: coords?.longitude ?? Number(result.lon),
+        // Largest kind of place this point belongs to, or null in the countryside
+        settlement: SETTLEMENT_TYPES.find((type) => address[type]) ?? null,
     }
 }
 

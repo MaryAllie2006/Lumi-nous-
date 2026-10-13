@@ -60,7 +60,7 @@ function describeSky(cloudCover, precipChance) {
     return 'Overcast tonight'
 }
 
-function toWeather({ hourly, daily }) {
+function toWeather({ hourly, daily, timezone }) {
     // Tonight = every hour between today's sunset and tomorrow's sunrise
     const sunset = daily.sunset[0]
     const sunrise = daily.sunrise[1]
@@ -82,5 +82,6 @@ function toWeather({ hourly, daily }) {
         sunset: formatTime(sunset),
         sunrise: formatTime(sunrise),
         summary: describeSky(cloudCoverPercent, precipitationChancePercent),
+        timezone, // e.g. 'America/Denver', used to show times in the location's own zone
     }
 }

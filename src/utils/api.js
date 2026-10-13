@@ -1,11 +1,8 @@
-import {
-    mockLightPollution,
-    mockAstroEvents,
-} from './mockData.js'
-import { getMoonPhase as calculateMoonPhase } from './moonPhase.js'
+import { mockAstroEvents } from './mockData.js'
+import { getMoonPhase as calculateMoonPhase, getNextMoonTimes } from './moonPhase.js'
 import { fetchTonightWeather } from './weather.js'
-
 import { searchLocation, reverseLocation } from './location.js'
+import { estimateLightPollution } from './lightPollution.js'
 
 const MOCK_DELAY_MS = 600
 
@@ -15,7 +12,7 @@ function resolveWithDelay(data) {
     })
 }
 
-
+// query: a city/address string, or { latitude, longitude } from geolocation.
 export function getLocation(query) {
     return typeof query === 'string' ? searchLocation(query) : reverseLocation(query)
 }
@@ -25,13 +22,14 @@ export function getWeather(coords) {
     return fetchTonightWeather(coords)
 }
 
-// Moonrise isn't calculated yet, so it's left out rather than showing a fake time
-export function getMoonPhase(date = new Date()) {
-    return resolveWithDelay(calculateMoonPhase(date))
+// Calculated locally with suncalc, so there's no request to wait for
+export function getMoonPhase(coords, date = new Date()) {
+    return Promise.resolve({ ...calculateMoonPhase(date), ...getNextMoonTimes(coords, date) })
 }
 
-export function getLightPollution({ latitude, longitude }) {
-    return resolveWithDelay(mockLightPollution)
+// Estimated from the kind of place; swap for real data (e.g. lightpollutionmap.info) later
+export function getLightPollution(location) {
+    return Promise.resolve(estimateLightPollution(location))
 }
 
 // year: e.g. 2026, month: 1–12. Omit both to get every event.
