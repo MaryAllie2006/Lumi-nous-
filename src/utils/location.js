@@ -20,7 +20,7 @@ async function requestNominatim(path, params) {
     return response.json()
 }
 
-const SETTLEMENT_TYPES = ['city', 'town', 'village', 'hamlet'] // largest first
+const SETTLEMENT_TYPES = ['city', 'town', 'village', 'hamlet'] 
 
 // Turns a Nominatim result into the same shape as mockLocation
 function toLocation(result, coords) {
@@ -29,12 +29,10 @@ function toLocation(result, coords) {
 
     return {
         name: result.name || address.city || address.town || address.village || address.county || 'Your location',
-        // US: state code ('US-CO' → 'CO'). Elsewhere: the country name.
         region: isUS ? address['ISO3166-2-lvl4']?.split('-')[1] : address.country,
         country: address.country,
         latitude: coords?.latitude ?? Number(result.lat),
         longitude: coords?.longitude ?? Number(result.lon),
-        // Largest kind of place this point belongs to, or null in the countryside
         settlement: SETTLEMENT_TYPES.find((type) => address[type]) ?? null,
     }
 }
@@ -55,11 +53,9 @@ export async function reverseLocation(coords) {
     const result = await requestNominatim('reverse', {
         lat: coords.latitude,
         lon: coords.longitude,
-        zoom: 10, // city-level; higher numbers return street addresses
+        zoom: 10, 
     })
 
-    // Nominatim returns { error } for places with no address (e.g. open ocean).
-    // The coordinates are still valid for a forecast, so keep going.
     if (result.error) {
         return toLocation({}, coords)
     }

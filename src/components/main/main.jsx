@@ -28,7 +28,7 @@ const ERROR_MESSAGES = {
   LOCATION_UNAVAILABLE: "Location search isn't responding right now. Please try again in a moment.",
 };
 
-// The preloader stays up for a random 10–15 seconds, even when the data arrives sooner
+// The preloader stays up for a random 10–15 seconds, to make it seem like its "collecting data"
 const MIN_LOADING_MS = 10000;
 const MAX_LOADING_MS = 15000;
 
