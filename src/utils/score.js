@@ -6,14 +6,14 @@ const WEIGHTS = {
     lightPollution: 0.25,
 }
 
-// Minimum score for each rating, checked from the top down.
+// Minimum score for each rating
 export const RATINGS = [
     { rating: 'excellent', min: 7.5, verdict: 'Excellent night for stargazing' },
     { rating: 'fair', min: 5, verdict: 'Fair night for stargazing' },
     { rating: 'poor', min: 0, verdict: 'Poor night for stargazing' },
 ]
 
-// Each factor is scored 0–10, where 10 is ideal.
+// Each factor is scored 0–10
 function scoreSky({ cloudCoverPercent, precipitationChancePercent = 0 }) {
     const worst = Math.max(cloudCoverPercent, precipitationChancePercent)
     return 10 * (1 - worst / 100)
@@ -23,7 +23,6 @@ function scoreMoon({ illuminationPercent }) {
     return 10 * (1 - illuminationPercent / 100)
 }
 
-// Bortle 1 (pristine) → 10, Bortle 9 (inner city) → 0.
 function scoreLightPollution({ bortleClass }) {
     return (10 * (9 - bortleClass)) / 8
 }
