@@ -1,0 +1,25 @@
+.verdict-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--verdict-color) 12%, transparent);
+}
+
+.verdict-banner__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--verdict-color);
+}
+
+.verdict-banner__text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--verdict-color);
+}
+
+.verdict-banner_excellent { --verdict-color: #70DE9E; }
+.verdict-banner_fair      { --verdict-color: #F2C66D; }
+.verdict-banner_poor      { --verdict-color: #F07C7C; }

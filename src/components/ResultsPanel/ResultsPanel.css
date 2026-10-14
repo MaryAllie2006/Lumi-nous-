@@ -1,0 +1,39 @@
+.results-panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 60px 24px;
+    text-align: center;
+}
+
+.results-panel__star{
+    width: 46px;
+    height: 46px;
+    margin-bottom: 24px;
+}
+
+.results-panel__title{
+    font-size: 26px;
+    font-weight: 700;
+    color: #f4f2ff;
+    margin: 0;
+}
+
+.results-panel__subtitle{
+    font-size: 16px;
+    color: #9fa3c0;
+    margin: 0;
+}
+
+.results-panel__cards{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 16px;
+}
+
+.results-panel__cards .info-card{
+    flex: 1;
+}
