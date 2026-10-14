@@ -1,6 +1,6 @@
 import './EventCard.css'
 
-// Per-category color theme, sourced from the Figma Astro Events frame.
+// category themes colors 
 const CATEGORY_THEME = {
     'meteor shower': { accent: '#f59e59', badgeBg: 'rgba(245,158,89,0.18)' },
     'planet': { accent: '#73b8f5', badgeBg: 'rgba(115,184,245,0.18)' },

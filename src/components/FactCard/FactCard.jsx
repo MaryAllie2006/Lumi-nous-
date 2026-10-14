@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { facts as defaultFacts } from '../../utils/facts.js'
 import './FactCard.css'
 
-// Returns a shuffled copy so each search shows the facts in a new order
+// shuffles fact cards so new facts are presented every time
 function shuffle(list) {
   const copy = [...list]
   for (let i = copy.length - 1; i > 0; i--) {

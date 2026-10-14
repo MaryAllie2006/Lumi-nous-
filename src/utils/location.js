@@ -1,6 +1,5 @@
 const NOMINATIM_URL = 'https://nominatim.openstreetmap.org'
 
-// Shared by search and reverse: adds the common params and checks the response
 async function requestNominatim(path, params) {
     const query = new URLSearchParams({
         ...params,

@@ -1,6 +1,4 @@
-// Mock data for building the UI before the real APIs are connected.
-// These are the shapes components consume; api.js should normalize real responses into the same shapes so swapping mocks for live data is painless.
-
+// Mock data for building the UI before the real APIs are connected
 export const mockLocation = {
     name: 'Big Bend National Park',
     region: 'TX',
@@ -23,7 +21,6 @@ export const mockWeather = {
     summary: 'Clear skies expected all night',
 }
 
-// Aug 10, 2026 is ~2.5 days before the Aug 12 new moon.
 export const mockMoonPhase = {
     phaseName: 'Waning Crescent',
     illuminationPercent: 7,
@@ -32,15 +29,12 @@ export const mockMoonPhase = {
     moonset: '6:52 PM',
 }
 
-// Bortle scale: 1 (pristine dark sky) to 9 (inner city).
 export const mockLightPollution = {
     bortleClass: 2,
     skyQualityMagnitude: 21.8, // mag/arcsec²; higher is darker
     description: 'Excellent dark-sky visibility',
 }
 
-// `category` must match a key in EventCard's CATEGORY_THEME.
-// `startDate`/`endDate` are for filtering by month; `dateRange` is display text.
 export const mockAstroEvents = [
     {
         id: 'total-solar-eclipse-2026',

@@ -1,4 +1,5 @@
-// Add more facts here — FactCard cycles through all of them.
+// can definitely add more facts 
+
 export const facts = [
  'Bortle Class 1 skies are so dark that the Milky Way casts visible shadows on the ground.',
  'It would take nine years to walk to the moon.',

@@ -28,7 +28,7 @@ const ERROR_MESSAGES = {
   LOCATION_UNAVAILABLE: "Location search isn't responding right now. Please try again in a moment.",
 };
 
-// The preloader stays up for a random 10–15 seconds, to make it seem like its "collecting data"
+// so the preloader looks busy 
 const MIN_LOADING_MS = 10000;
 const MAX_LOADING_MS = 15000;
 
@@ -42,12 +42,11 @@ function getErrorMessage(err) {
 }
 
 function Main() {
-  const [status, setStatus] = useState("idle"); // 'idle' | 'loading' | 'results' | 'error'
+  const [status, setStatus] = useState("idle"); 
   const [results, setResults] = useState(null);
   const [error, setError] = useState("");
-  const [lastQuery, setLastQuery] = useState(""); // refills the search box after an error
+  const [lastQuery, setLastQuery] = useState(""); 
 
-  // loadingDone: passed in by handleUseLocation so its wait starts when the button is clicked
   async function handleSearch(query, loadingDone = waitForLoadingScreen()) {
     if (typeof query === "string") setLastQuery(query);
     setStatus("loading");

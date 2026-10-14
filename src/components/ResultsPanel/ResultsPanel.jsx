@@ -8,7 +8,7 @@ import sunIcon from '../../images/Sun.svg'
 import moonIcon from '../../images/moon.svg'
 import pollutionIcon from '../../images/pollutionimg.svg'
 
-// Turns '2026-08-10' into 'Monday, August 10'
+// fixes date to turn into 'Monday, August 10'
 function formatDate(isoDate){
     return new Date(`${isoDate}T00:00`).toLocaleDateString('en-US', {
         weekday: 'long',

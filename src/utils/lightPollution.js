@@ -1,5 +1,3 @@
-// Rough Bortle class from the kind of place, until real light-pollution data is connected.
-// Bortle scale: 1 (pristine dark sky) to 9 (inner city).
 const BORTLE_BY_SETTLEMENT = {
     city: 7,
     town: 5,

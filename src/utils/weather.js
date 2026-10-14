@@ -10,7 +10,7 @@ const HOURLY_FIELDS = [
     'visibility',
 ].join(',')
 
-// Fetches tonight's forecast and returns it in the same shape as mockWeather
+// Fetches tonight's forecast 
 export async function fetchTonightWeather({ latitude, longitude }) {
     const params = new URLSearchParams({
         latitude,
@@ -34,7 +34,6 @@ export async function fetchTonightWeather({ latitude, longitude }) {
     return toWeather(await response.json())
 }
 
-// Average of the given hours, skipping any missing values
 function average(values, hours) {
     const present = hours.map((i) => values[i]).filter((v) => v != null)
     return present.reduce((sum, v) => sum + v, 0) / present.length
@@ -44,7 +43,6 @@ function maximum(values, hours) {
     return Math.max(...hours.map((i) => values[i] ?? 0))
 }
 
-// '2026-09-30T19:39' → '7:39 PM', in the location's own time zone
 function formatTime(isoTime) {
     const [hours, minutes] = isoTime.slice(11, 16).split(':').map(Number)
     const period = hours >= 12 ? 'PM' : 'AM'
@@ -61,7 +59,7 @@ function describeSky(cloudCover, precipChance) {
 }
 
 function toWeather({ hourly, daily, timezone }) {
-    // Tonight = every hour between today's sunset and tomorrow's sunrise
+    // counts every hour between today's sunset and tomorrow's sunrise
     const sunset = daily.sunset[0]
     const sunrise = daily.sunrise[1]
     const night = hourly.time
@@ -82,6 +80,6 @@ function toWeather({ hourly, daily, timezone }) {
         sunset: formatTime(sunset),
         sunrise: formatTime(sunrise),
         summary: describeSky(cloudCoverPercent, precipitationChancePercent),
-        timezone, // e.g. 'America/Denver', used to show times in the location's own zone
+        timezone, 
     }
 }

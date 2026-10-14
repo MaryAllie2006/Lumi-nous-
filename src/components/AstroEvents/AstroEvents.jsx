@@ -10,7 +10,6 @@ function getCurrentMonth() {
   return { year: today.getFullYear(), month: today.getMonth() + 1 };
 }
 
-// Moves { year, month } by `delta` months, wrapping across years
 function shiftMonth({ year, month }, delta) {
   const date = new Date(year, month - 1 + delta);
   return {

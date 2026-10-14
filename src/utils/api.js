@@ -12,27 +12,27 @@ function resolveWithDelay(data) {
     })
 }
 
-// query: a city/address string, or { latitude, longitude } from geolocation.
+// query: a city/address string, or latitude/longitude from geolocation.
 export function getLocation(query) {
     return typeof query === 'string' ? searchLocation(query) : reverseLocation(query)
 }
 
-// Live forecast from Open-Meteo for tonight (sunset → sunrise)
+// Live forecast from Open-Meteo
 export function getWeather(coords) {
     return fetchTonightWeather(coords)
 }
 
-// Calculated locally with suncalc, so there's no request to wait for
+// Calculated with suncalc
 export function getMoonPhase(coords, date = new Date()) {
     return Promise.resolve({ ...calculateMoonPhase(date), ...getNextMoonTimes(coords, date) })
 }
 
-// Estimated from the kind of place; swap for real data (e.g. lightpollutionmap.info) later
+
 export function getLightPollution(location) {
     return Promise.resolve(estimateLightPollution(location))
 }
 
-// year: e.g. 2026, month: 1–12. Omit both to get every event.
+
 export function getAstroEvents(year, month) {
     if (!year || !month) {
         return resolveWithDelay(mockAstroEvents)
